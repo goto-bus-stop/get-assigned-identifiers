@@ -16,6 +16,16 @@ module.exports = function getAssignedIdentifiers (node, identifiers) {
 
   identifiers = identifiers || []
 
+  if (node.type === 'ImportDeclaration') {
+    node.specifiers.forEach(function (el) {
+      getAssignedIdentifiers(el, identifiers)
+    })
+  }
+
+  if (node.type === 'ImportDefaultSpecifier' || node.type === 'ImportNamespaceSpecifier' || node.type === 'ImportSpecifier') {
+    node = node.local
+  }
+
   if (node.type === 'RestElement') {
     node = node.argument
   }

@@ -96,3 +96,18 @@ test('nested object destructuring', function (t) {
   var node = ast.body[0].declarations[0].id
   t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'b', 'lol', 'd', 'g' ])
 })
+
+test('import declarations', function (t) {
+  t.plan(2)
+  var ast = parse(`
+    import x, { y, z as a } from 'module'
+  `, { sourceType: 'module' })
+  var node = ast.body[0]
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'x', 'y', 'a' ])
+
+  ast = parse(`
+    import * as ns from 'module'
+  `, { sourceType: 'module' })
+  node = ast.body[0]
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'ns' ])
+})
