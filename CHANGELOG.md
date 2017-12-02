@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
-* engage
+## 1.1.0 / 2017-12-02
+
+* support import declarations
 
 ## 1.0.0 / 2017-11-11
 
