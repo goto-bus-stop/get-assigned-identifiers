@@ -41,7 +41,11 @@ module.exports = function getAssignedIdentifiers (node, identifiers) {
 
   if (node.type === 'ObjectPattern') {
     node.properties.forEach(function (prop) {
-      getAssignedIdentifiers(prop.value, identifiers)
+      if (prop.type === 'Property') {
+        getAssignedIdentifiers(prop.value, identifiers)
+      } else if (prop.type === 'RestElement') {
+        getAssignedIdentifiers(prop, identifiers)
+      }
     })
   }
 

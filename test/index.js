@@ -97,6 +97,15 @@ test('nested object destructuring', function (t) {
   t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'b', 'lol', 'd', 'g' ])
 })
 
+test('object rest destructuring', function (t) {
+  t.plan(1)
+  var ast = parse(`
+    var {a, ...b} = whatever()
+  `, { ecmaVersion: 9 })
+  var node = ast.body[0].declarations[0].id
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b' ])
+})
+
 test('import declarations', function (t) {
   t.plan(2)
   var ast = parse(`
