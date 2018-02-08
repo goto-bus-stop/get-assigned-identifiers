@@ -2,10 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 1.2.0 / 2018-02-08
+
+* support object rest destructuring `{...a} = b`
 
 ## 1.1.0 / 2017-12-02
 
