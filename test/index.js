@@ -29,7 +29,7 @@ test('simple identifiers', function (t) {
     var xyz = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'xyz' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['xyz'])
 })
 
 test('array destructuring', function (t) {
@@ -38,7 +38,7 @@ test('array destructuring', function (t) {
     var [a, b, c] = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b', 'c' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['a', 'b', 'c'])
 })
 
 test('array destructuring with rest element', function (t) {
@@ -47,7 +47,7 @@ test('array destructuring with rest element', function (t) {
     var [a, b, ...rest] = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b', 'rest' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['a', 'b', 'rest'])
 })
 
 test('array destructuring with holes', function (t) {
@@ -56,7 +56,7 @@ test('array destructuring with holes', function (t) {
     var [a, b,,,,,, boop] = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b', 'boop' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['a', 'b', 'boop'])
 })
 
 test('nested array destructuring', function (t) {
@@ -65,7 +65,7 @@ test('nested array destructuring', function (t) {
     var [a, [[[b]], ...c], boop] = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b', 'c', 'boop' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['a', 'b', 'c', 'boop'])
 })
 
 test('object destructuring', function (t) {
@@ -74,7 +74,7 @@ test('object destructuring', function (t) {
     var {a, b} = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['a', 'b'])
 })
 
 test('object destructuring with different names', function (t) {
@@ -83,7 +83,7 @@ test('object destructuring with different names', function (t) {
     var {a: b, b: lol} = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'b', 'lol' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['b', 'lol'])
 })
 
 test('nested object destructuring', function (t) {
@@ -94,7 +94,7 @@ test('nested object destructuring', function (t) {
     }} = whatever()
   `)
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'b', 'lol', 'd', 'g' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['b', 'lol', 'd', 'g'])
 })
 
 test('object rest destructuring', function (t) {
@@ -103,7 +103,7 @@ test('object rest destructuring', function (t) {
     var {a, ...b} = whatever()
   `, { ecmaVersion: 9 })
   var node = ast.body[0].declarations[0].id
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'a', 'b' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['a', 'b'])
 })
 
 test('import declarations', function (t) {
@@ -112,11 +112,11 @@ test('import declarations', function (t) {
     import x, { y, z as a } from 'module'
   `, { sourceType: 'module' })
   var node = ast.body[0]
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'x', 'y', 'a' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['x', 'y', 'a'])
 
   ast = parse(`
     import * as ns from 'module'
   `, { sourceType: 'module' })
   node = ast.body[0]
-  t.deepEqual(getAssignedIdentifiers(node).map(getName), [ 'ns' ])
+  t.deepEqual(getAssignedIdentifiers(node).map(getName), ['ns'])
 })
