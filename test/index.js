@@ -4,7 +4,7 @@ var parse = require('acorn').parse
 var getAssignedIdentifiers = require('../')
 
 function getName (node) {
-  assert.equal(node.type, 'Identifier', 'Returned node must be an Identifier')
+  assert.strictEqual(node.type, 'Identifier', 'Returned node must be an Identifier')
   return node.name
 }
 

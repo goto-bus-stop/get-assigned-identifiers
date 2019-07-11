@@ -11,8 +11,8 @@ var assert = require('assert')
  * this returns the nodes for 'b', 'c', and 'd'
  */
 module.exports = function getAssignedIdentifiers (node, identifiers) {
-  assert.equal(typeof node, 'object', 'get-assigned-identifiers: node must be object')
-  assert.equal(typeof node.type, 'string', 'get-assigned-identifiers: node must have a type')
+  assert.strictEqual(typeof node, 'object', 'get-assigned-identifiers: node must be object')
+  assert.strictEqual(typeof node.type, 'string', 'get-assigned-identifiers: node must have a type')
 
   identifiers = identifiers || []
 
