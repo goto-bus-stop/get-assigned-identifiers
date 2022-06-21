@@ -1,3 +1,6 @@
+/* eslint-disable no-var */
+'use strict'
+
 var test = require('tape')
 var assert = require('assert')
 var parse = require('acorn').parse
